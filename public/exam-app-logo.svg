@@ -1,0 +1,26 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="primaryGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FDE047" />
+      <stop offset="100%" stop-color="#EAB308" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+  
+  <!-- Outer Shield Shape for "Exam/Security" -->
+  <path d="M50 5L15 20V45C15 65 30 85 50 95C70 85 85 65 85 45V20L50 5Z" fill="#18181B" stroke="#FDE047" stroke-width="2" />
+  
+  <!-- Inner "Banana Checkmark" -->
+  <path d="M30 50L45 65L75 35" stroke="url(#primaryGradient)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)" />
+  
+  <!-- Nano Dots for Tech/Nano connectivity -->
+  <circle cx="25" cy="25" r="2" fill="#FDE047" opacity="0.4" />
+  <circle cx="75" cy="75" r="2" fill="#FDE047" opacity="0.4" />
+  <circle cx="50" cy="15" r="1.5" fill="#FDE047" opacity="0.7" />
+  
+  <!-- Subtle text at bottom -->
+  <text x="50" y="85" font-family="Arial, sans-serif" font-weight="900" font-size="8" fill="#FDE047" text-anchor="middle" letter-spacing="1">EXAM PORTAL</text>
+</svg>

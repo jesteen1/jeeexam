@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root,
+.light {
+  --background: #f8fafc;
+  --foreground: #020617;
+  --accent-primary: #0ea5e9;
+  /* Teal */
+  --accent-secondary: #8b5cf6;
+  /* Violet */
+  --accent-glow: rgba(14, 165, 233, 0.2);
+}
+
+.dark {
+  --background: #020617;
+  /* Midnight Black */
+  --foreground: #f8fafc;
+  --accent-primary: #2dd4bf;
+  /* Neon Teal */
+  --accent-secondary: #a855f7;
+  /* Cyber Violet */
+  --accent-glow: rgba(45, 212, 191, 0.3);
+  color-scheme: dark;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+}
+
+@keyframes aurora {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(10%, 15%) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-15%, 5%) scale(0.9);
+  }
+
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+}
+
+.animate-aurora {
+  animation: aurora 20s infinite alternate ease-in-out;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.5s ease, color 0.5s ease;
+  overflow-x: hidden;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.aurora-blob {
+  position: absolute;
+  filter: blur(100px);
+  opacity: 0.4;
+  z-index: 0;
+  border-radius: 50%;
+}
