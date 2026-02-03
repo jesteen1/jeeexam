@@ -112,7 +112,7 @@ const data = await res.json();
                             {/* Form */}
                             <form className="space-y-5"  onSubmit={(e) => {
                                 e.preventDefault();
-                                alert(isLogin ? "Terminal access granted!" : "Database indexed. Account created!");
+                
                                 handleSubmit()
                             }}>
                                 {!isLogin && (
