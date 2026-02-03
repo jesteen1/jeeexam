@@ -5,7 +5,7 @@ import PostModel from "../../../models/post";
 import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 import sessionModel from "../../../models/session"
-
+import apiModel from "../../../models/apikey";
 export const GET = async (req) => {
   try {
     await connect()
@@ -22,7 +22,10 @@ return   NextResponse.json({man:"hwwlow"}, { status: 400 });
 export const POST = async (req) => {
   try {
     await connect()
-    
+    const data=await apiModel.findOne({key:process.env.SECRET_KEY})
+
+  if(data){
+
     const data12=await req.formData()
     const Email = data12.get("mail");
     const datafromdb=sessionModel.deleteOne({"Email":Email})
@@ -35,7 +38,9 @@ export const POST = async (req) => {
       
        
         const info3="done"
-    return   NextResponse.json(JSON.stringify({  info:info3, mail: Email }), { status: 400 });
+         return   NextResponse.json(JSON.stringify({  info:info3, mail: Email }), { status: 400 });
+  }  
+   
     }
    
  

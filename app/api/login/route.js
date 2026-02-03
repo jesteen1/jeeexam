@@ -6,24 +6,28 @@ import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 import sessionModel from "../../../models/session"
 
-
+import apiModel from "../../../models/apikey";
 
 
 
 export const GET = async (req) => {
   try {
     await connect()
-    
- const cookiesstore =await cookies()
- const cookiedata= cookiesstore.get("usersessionid")?.value
- const mailidfromdb=await sessionModel.findOne({"key":cookiedata})
- const mailid=mailidfromdb?.Email
+const data=await apiModel.findOne({key:process.env.SECRET_KEY})
+if(data){
+
+  const cookiesstore =await cookies()
+  const cookiedata= cookiesstore.get("usersessionid")?.value
+  const mailidfromdb=await sessionModel.findOne({"key":cookiedata})
+  const mailid=mailidfromdb?.Email
+  return   NextResponse.json(JSON.stringify({  mailids:mailid }), { status: 400 });
+}   
 
  //console.log(mailid)
     // const input=await PostModel.insertOne({
     //     title:"million",
     //     description:"the mand",
-return   NextResponse.json(JSON.stringify({  mailids:mailid }), { status: 400 });
+return   NextResponse.json(JSON.stringify({  mailids:"hellow" }), { status: 400 });
   } catch (e) {
     console.log(e)
     return new NextResponse("Internal Server Error" + e, { status: 500 })
@@ -32,6 +36,7 @@ return   NextResponse.json(JSON.stringify({  mailids:mailid }), { status: 400 })
 export const POST = async (req) => {
   try {
     await connect()
+    
     const cookiesstore =await cookies()
     
     const data = await req.formData()
